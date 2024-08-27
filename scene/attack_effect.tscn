@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8jq8a2teo070"]
+
+[sub_resource type="Curve" id="Curve_h27xh"]
+_data = [Vector2(0, 0.984679), 0.0, 0.0, 0, 0, Vector2(0.989655, 0.387154), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_1vmym"]
+offsets = PackedFloat32Array(0, 0.215517)
+
+[node name="attack_effect" type="CPUParticles2D"]
+emitting = false
+amount = 10
+lifetime = 0.1
+one_shot = true
+explosiveness = 0.87
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 600.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_h27xh")
+color = Color(0, 0.952267, 0.396744, 1)
+color_initial_ramp = SubResource("Gradient_1vmym")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(5, 5)
+
+[connection signal="finished" from="." to="." method="_on_finished"]

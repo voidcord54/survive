@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dpv0yivqvifgy"]
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+position = Vector2(0, -113)
+amount = 8000
+emission_shape = 3
+emission_rect_extents = Vector2(1000, 1)
+gravity = Vector2(-100, 400)
+color = Color(0, 0.540654, 0.993749, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1, 76)
+zoom = Vector2(5, 5)

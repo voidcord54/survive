@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://x573fndv3hst"]
+
+[ext_resource type="Script" path="res://script/collide_coin.gd" id="1_ryu3a"]
+[ext_resource type="Texture2D" uid="uid://wjxrntay5hej" path="res://Asset/sprite/world_tileset.png" id="2_kmt72"]
+[ext_resource type="AudioStream" uid="uid://cqnvwrar2ka15" path="res://sound_effect/coin.mp3" id="3_4f5bd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbvql"]
+size = Vector2(8, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6s8s4"]
+size = Vector2(16, 16)
+
+[node name="collide_coin" type="StaticBody2D"]
+
+[node name="collide_coin" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ryu3a")
+
+[node name="Sprite2D" type="Sprite2D" parent="collide_coin"]
+texture = ExtResource("2_kmt72")
+region_enabled = true
+region_rect = Rect2(0, 32, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collide_coin"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_vbvql")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="collide_coin"]
+stream = ExtResource("3_4f5bd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_6s8s4")
+
+[connection signal="body_entered" from="collide_coin" to="collide_coin" method="_on_body_entered"]

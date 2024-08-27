@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpi1xax3r6f25"]
+
+[ext_resource type="Texture2D" uid="uid://djr4alobp50uo" path="res://Asset/sprite/hp.png" id="1_egmph"]
+[ext_resource type="Script" path="res://script/ui.gd" id="2_3c6ny"]
+[ext_resource type="FontFile" uid="uid://c53kogtyjwsss" path="res://Asset/fonts/PixelOperator8-Bold.ttf" id="2_oiwap"]
+[ext_resource type="Texture2D" uid="uid://dnanglf25rq04" path="res://Asset/sprite/coin.png" id="3_tvmoi"]
+
+[node name="ui" type="Sprite2D"]
+modulate = Color(0.760784, 1, 1, 1)
+position = Vector2(46, 36)
+texture = ExtResource("1_egmph")
+script = ExtResource("2_3c6ny")
+
+[node name="hp" type="Label" parent="."]
+offset_left = 45.0
+offset_top = -12.0
+offset_right = 102.0
+offset_bottom = 14.0
+theme_override_fonts/font = ExtResource("2_oiwap")
+theme_override_font_sizes/font_size = 25
+text = "= 3"
+
+[node name="coin" type="Label" parent="."]
+offset_left = 45.0
+offset_top = 47.0
+offset_right = 102.0
+offset_bottom = 73.0
+theme_override_fonts/font = ExtResource("2_oiwap")
+theme_override_font_sizes/font_size = 25
+text = "= 0"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, 59)
+scale = Vector2(5, 5)
+texture = ExtResource("3_tvmoi")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)

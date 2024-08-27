@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8pkxttqddrf"]
+
+[ext_resource type="Texture2D" uid="uid://bs7tpksn05svx" path="res://Asset/sprite/bullet_player.png" id="1_blktm"]
+[ext_resource type="Script" path="res://script/bullet_player.gd" id="1_pof7y"]
+[ext_resource type="Texture2D" uid="uid://m1md4uotrcy6" path="res://Asset/sprite/point_light.webp" id="3_u3ldk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jelo2"]
+radius = 1.41421
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1b2m"]
+radius = 4.0
+
+[node name="bullet_player" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 16
+motion_mode = 1
+script = ExtResource("1_pof7y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jelo2")
+
+[node name="bullet_player" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 17
+
+[node name="Sprite2D" type="Sprite2D" parent="bullet_player"]
+modulate = Color(0.852658, 0.868246, 0.51097, 1)
+self_modulate = Color(1, 0.886664, 0.802217, 1)
+scale = Vector2(0.26087, 0.285714)
+texture = ExtResource("1_blktm")
+region_enabled = true
+region_rect = Rect2(4, 6, 23, 21)
+
+[node name="area" type="CollisionShape2D" parent="bullet_player"]
+shape = SubResource("CircleShape2D_b1b2m")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.0234375, 0.0234375)
+color = Color(0.939589, 0.243824, 0, 1)
+energy = 10.0
+texture = ExtResource("3_u3ldk")
+
+[connection signal="area_entered" from="bullet_player" to="." method="_on_bullet_player_area_entered"]
+[connection signal="body_entered" from="bullet_player" to="." method="_on_bullet_player_body_entered"]

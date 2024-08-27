@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://kj0cfcn2et6o"]
+
+[ext_resource type="Texture2D" uid="uid://cl7faahto4ie0" path="res://Asset/sprite/slime_green.png" id="1_1kbvn"]
+[ext_resource type="Script" path="res://script/enemy_1.gd" id="1_ywuqd"]
+[ext_resource type="PackedScene" uid="uid://c8jq8a2teo070" path="res://scene/attack_effect.tscn" id="3_idccw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78ccw"]
+size = Vector2(8, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_migf4"]
+atlas = ExtResource("1_1kbvn")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvjj3"]
+atlas = ExtResource("1_1kbvn")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd0vw"]
+atlas = ExtResource("1_1kbvn")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2hs0"]
+atlas = ExtResource("1_1kbvn")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2g36t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_migf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvjj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cd0vw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2hs0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="enemy" type="Area2D"]
+collision_layer = 16
+collision_mask = 130
+script = ExtResource("1_ywuqd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_78ccw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 70
+sprite_frames = SubResource("SpriteFrames_2g36t")
+autoplay = "default"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.85
+
+[node name="Timer2" type="Timer" parent="."]
+
+[node name="bullet_spawn" type="Node2D" parent="."]
+position = Vector2(0, 6)
+
+[node name="attack_effect" parent="." instance=ExtResource("3_idccw")]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

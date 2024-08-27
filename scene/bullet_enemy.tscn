@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://50oncclp6n0v"]
+
+[ext_resource type="Texture2D" uid="uid://cu6f3yhl658qo" path="res://Asset/sprite/bullet_enemy.png" id="1_nmkob"]
+[ext_resource type="Script" path="res://script/bullet_enemy.gd" id="1_u6tp3"]
+[ext_resource type="Texture2D" uid="uid://m1md4uotrcy6" path="res://Asset/sprite/point_light.webp" id="3_cqolv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u8gxq"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n3y0h"]
+radius = 1.0
+
+[node name="bullet_enemy" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_u6tp3")
+
+[node name="bullet_enemy" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="bullet_enemy"]
+self_modulate = Color(0, 1, 0, 1)
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("1_nmkob")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_enemy"]
+visible = false
+shape = SubResource("CircleShape2D_u8gxq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_n3y0h")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.03125, 0.0234375)
+color = Color(0, 1, 0, 1)
+energy = 1.5
+shadow_enabled = true
+texture = ExtResource("3_cqolv")
+
+[connection signal="body_entered" from="bullet_enemy" to="." method="_on_bullet_enemy_body_entered"]
