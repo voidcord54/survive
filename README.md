@@ -1,5 +1,5 @@
 # What
-This is a simple 2d game in 2024 i create using Godot 4.2.
+This is a simple 2D PLATFORM game in 2024 i create using Godot 4.2.
 ![Main Menu](./images/main_menu.png)
 
 
